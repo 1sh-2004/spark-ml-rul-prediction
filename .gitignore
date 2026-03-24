@@ -1,0 +1,54 @@
+# ======================
+# Python cache
+# ======================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ======================
+# Virtual environments (DO NOT PUSH)
+# ======================
+venv/
+env/
+ENV/
+.env/
+
+# ======================
+# Dataset (DO NOT PUSH)
+# ======================
+CMAPSSData/
+
+# ======================
+# PyCharm files
+# ======================
+.idea/
+
+# ======================
+# OS files
+# ======================
+.DS_Store
+Thumbs.db
+
+# ======================
+# Logs
+# ======================
+*.log
+
+# ======================
+# Model artifacts (optional but safe)
+# ======================
+*.pkl
+*.h5
+*.pt
+
+# ======================
+# Spark temp files
+# ======================
+spark-warehouse/
+metastore_db/
+
+# ======================
+# Docker (optional cleanup)
+# ======================
+*.tar

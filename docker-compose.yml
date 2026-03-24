@@ -1,0 +1,34 @@
+version: "3.8"
+services:
+  spark-master:
+    image: apache/spark:3.5.0
+    container_name: spark-master
+    ports:
+      - "8080:8080"
+      - "7077:7077"
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master
+
+  spark-worker:
+    image: apache/spark:3.5.0
+    depends_on:
+      - spark-master
+    volumes:
+      - /Users/vanshkeserwani/bdat:/app
+    environment:
+      - SPARK_WORKER_CORES=2
+      - SPARK_WORKER_MEMORY=1536M
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+
+  ml-app:
+    build: .
+    container_name: ml-app
+    depends_on:
+      - spark-master
+    volumes:
+      - /Users/vanshkeserwani/bdat:/app
+    ports:
+      - "4040:4040"
+    environment:
+      - SPARK_DRIVER_MEMORY=2G
+    command: python main.py
+    #command: python batch_test.py
