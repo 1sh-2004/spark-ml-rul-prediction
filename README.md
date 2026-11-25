@@ -142,12 +142,16 @@ Both implementations log training latency so the two approaches can be compared 
 | Models | RF (10 trees), GBT (5 iterations) | RF (10 trees), GBT (early stopping) |
 | Reported | Training latency, RF/GBT accuracy, top feature importance | Training latency, RF accuracy |
 
-Run both on your own hardware and record your numbers here:
+<!-- SPECULATED-RESULTS-START: delete everything between these two markers once you have real numbers -->
+**Estimated results (speculated, not measured):**
 
 | Approach | Training latency | RF accuracy |
 |---|---|---|
-| Spark MLlib | _your result_ | _your result_ |
-| Sequential | _your result_ | _your result_ |
+| Spark MLlib | ~40 s | ~0.80 |
+| Sequential | ~15 s | ~0.78 |
+
+On a dataset as small as FD001, the single-node baseline is expected to train faster because cluster scheduling overhead dominates. The distributed approach should pull ahead as data volume and worker count grow.
+
 
 Note that the two scripts use different feature sets and splits, so accuracy is not strictly like-for-like. At FD001 scale, cluster overhead can dominate; the distributed approach pays off as data volume and cluster size grow.
 
